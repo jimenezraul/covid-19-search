@@ -1,0 +1,97 @@
+.features {
+  background-color: rgb(244, 244, 244);
+}
+
+.masthead {
+  background: url('')no-repeat center center;
+  background-size: cover;
+  background-image: url("/static/covidapp/assets/img/cdc-k0KRNtqcjfw-unsplash.jpg");
+}
+
+.footer {
+  background-color: rgb(216, 219, 224);
+}
+
+/* Popup container - can be anything you want */
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+
+.popup .popuptext {
+  visibility: hidden;
+  margin-right: 15px;
+}
+
+/* Popup arrow */
+
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+}
+
+/* Toggle this class - hide and show the popup */
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popup .hide {
+  visibility: hidden;
+  -webkit-animation: fadeOut 1s;
+  animation: fadeOut 1s;
+}
+
+/* Add animation (fade in the popup) */
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.message {
+  z-index: 1;
+}
