@@ -1,1 +1,1 @@
-# covid-19-search
+# Covid-19 Global Search
