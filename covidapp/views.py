@@ -11,7 +11,11 @@ def covid_search(request):
     if request.method == 'GET':
         search = request.GET.get("search")
         if request.GET.get("search") == None:
-            usa = r
+            pass
+        elif request.GET.get("search") == '':
+            messages.warning(
+                request, "Please Enter a Country...")
+            return redirect('covid_search')
         else:
             country_search = [
                 x for x in r if x['country'] == search.title()]
@@ -32,7 +36,7 @@ def covid_search(request):
                     return render(request, "covidapp/index.html", context)
                 except:
                     messages.warning(
-                    request, "Country Not Found in Database")
+                        request, "Country Not Found in Database")
                     return redirect('covid_search')
 
             search_result = {
@@ -48,6 +52,6 @@ def covid_search(request):
             return render(request, "covidapp/index.html", context)
 
     context = {
-        'country': r
+        'country': r,
     }
     return render(request, "covidapp/index.html", context)
