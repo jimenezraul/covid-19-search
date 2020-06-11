@@ -6,6 +6,7 @@ from django.contrib import messages
 
 
 def covid_search(request):
+    # API Credit to NovelCOVID (https://github.com/NovelCOVID/API)
     covid_url = 'https://coronavirus-19-api.herokuapp.com/countries'
     r = requests.get(covid_url.format()).json()
     if request.method == 'GET':
