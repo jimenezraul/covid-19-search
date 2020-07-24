@@ -48,6 +48,7 @@ def covid_search(request):
             }
             context = {
                 'search_result': search_result,
+                "link": r
             }
             return render(request, "covidapp/index.html", context)
 

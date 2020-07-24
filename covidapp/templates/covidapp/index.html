@@ -22,15 +22,15 @@
                     <h1 class="mb-5">COVID-19 Cases</h1>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form action="{% url 'covid_search' %}" method="GET">
-                        {% csrf_token %}
+                  
+                        
                         <div class="form-row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control form-control-lg"
-                                    type="search" name="search" placeholder="Search by Country..."></div>
+                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input id="myInput" onkeyup="myFunction()" class="form-control form-control-lg"
+                                type="search" placeholder="Search by Country..."></div>
                             <div class="col-12 col-md-3"><button class="btn btn-primary btn-block btn-lg"
-                                    type="submit"><i class="fas fa-search"></i></button></div>
+                                    ><i class="fas fa-search"></i></button></div>
                         </div>
-                    </form>
+                   
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                         id="success-alert" role="alert">
                         {{ message }}
                     </div>
-
+                    
 
                     {% endfor %}
                     <script src="{% static 'covidapp/assets/js/alert-mobile.js' %}"></script>
@@ -75,19 +75,21 @@
                 <div class="col-12 position-relative">
                     <h1>Global</h1>
                 </div>
+                <div id="card" class="row col-12 justify-content-center">
                 {% for c in country %}
-                <div class="col-12 col-sm-10 col-md-6 col-lg-4 col-xl-4">
-                    <div class="border rounded p-0 mt-3 bg-light shadow">
-                        <div class="mx-auto features-icons-item mb-3 mb-lg-0 mb-lg-3">
-                            <h3 class="pt-3 border-bottom pb-3">Country: {{c.country}}</h3>
-                            <p class="lead mb-0"><span class="font-weight-bold">Total Cases:</span> {{c.cases}}</p>
-                            <p class="lead mb-0"><span class="font-weight-bold">Cases Today:</span> {{c.todayCases}}</p>
-                            <p class="lead mb-0"><span class="font-weight-bold">Deaths:</span> {{c.deaths}}</p>
-                            <p class="lead mb-0"><span class="font-weight-bold">Recovered:</span> {{c.recovered}}</p>
+                    <section id="cards" class="col-12 col-sm-10 col-md-6 col-lg-4 col-xl-4">
+                        <div class="border rounded p-0 mt-3 bg-light shadow">
+                            <div class="mx-auto features-icons-item mb-3 mb-lg-0 mb-lg-3">
+                                <h3 class="pt-3 border-bottom pb-3"><a>{{c.country}}</a></h3>
+                                <p class="lead mb-0"><span class="font-weight-bold">Total Cases:</span> {{c.cases}}</p>
+                                <p class="lead mb-0"><span class="font-weight-bold">Cases Today:</span> {{c.todayCases}}</p>
+                                <p class="lead mb-0"><span class="font-weight-bold">Deaths:</span> {{c.deaths}}</p>
+                                <p class="lead mb-0"><span class="font-weight-bold">Recovered:</span> {{c.recovered}}</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </section>
                 {% endfor %}
+            </div>
                 {% endif %}
             </div>
         </div>
@@ -103,6 +105,29 @@
     </footer>
     <script src="{% static 'covidapp/assets/js/jquery.min.js' %}"></script>
     <script src="{% static 'covidapp/assets/bootstrap/js/bootstrap.min.js' %}"></script>
-</body>
+
+    <script>
+        
+        function myFunction(){
+            var x = document.getElementById("myInput");
+            var input, filter, i, txtValue, h3;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            var colums = document.getElementById("card");
+            var divs = colums.getElementsByTagName("section");
+            var div = colums.getElementsByTagName("h3");
+            for (i = 0; i < div.length; i++) {
+                h3 = div[i].getElementsByTagName("a")[0];
+                txtValue = h3.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    divs[i].style.display = "";
+                } else {
+                    divs[i].style.display = "none";
+                }
+            }
+            
+        }
+    </script>
+    </body>
 
 </html>
